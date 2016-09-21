@@ -13,7 +13,7 @@
         .col-md-12
           %ul.proto-sub-list.list-group
           - 2.times do
-            = f.fields_for :images, @prototype.images do |img|
+            = f.fields_for :images, post_main_helper do |img|
               %li.list-group-item.col-md-4.appear_form
                 .image-upload.js-preview
                   = img.file_field :content
