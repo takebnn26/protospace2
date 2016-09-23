@@ -11,7 +11,6 @@
         %li{role: "presentation"}
           %a{href: "#"} Newest PROTO
       %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
-
 .container.proto-list
   .row
     - @prototypes.each do |proto|
@@ -25,7 +24,7 @@
                 .proto-user
                   = link_to "by #{proto.user.name}", user_path(proto.user)
                 .proto-posted
-                  = proto.created_at.strftime("%m月%d日")
+                  = proto.created_at.strftime("%Y年%m月%d日")
               %ul.proto-tag-list.list-inline
                 %li
                   %a{href: "#", class: "btn btn-default"} iPad
