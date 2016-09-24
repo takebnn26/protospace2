@@ -14,8 +14,8 @@ class PrototypesController < ApplicationController
       render :new, alert: 'You failed in posting'
     end
   end
-
   def show
+    @proto = Prototype.find(params[:id])
   end
   private
   def proto_params
