@@ -7,10 +7,14 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     if user.update(user_params)
-      redirect_to edit_user_path, success: "You succeeded to edit your profile"
+      redirect_to root_path, success: "You succeeded to edit your profile"
     else
-      render prototypes_index_path, warning: "You failed to edit your profile"
+      render edit_user_path, warning: "You failed to edit your profile"
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private
