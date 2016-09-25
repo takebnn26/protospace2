@@ -56,11 +56,3 @@
               %a.anchorjs-link{href: "#top-aligned-media"}
                 %span.anchorjs-icon
             %p= comment.text
-      / .form-inline
-      /   = form_for [@proto, @comment] do |f|
-      /     %h4 Write a comment
-      /     .row
-      /       %div.form-group.col-md-10
-      /         = f.text_area :text, placeholder: "Your comments", rows: 3, class: "form-control"
-      /       .form-group.col-md-2
-      /         = f.submit "Comment", class: "btn btn-primary"
