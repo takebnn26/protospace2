@@ -22,8 +22,11 @@ class PrototypesController < ApplicationController
   def edit
   end
   def update
-    @prototype.update(proto_params)
-    redirect_to root_path, notice: 'You suceeded in updating'
+    if @prototype.update(proto_params)
+      redirect_to root_path, notice: 'You suceeded in updating'
+    else
+      render :edit, alert: 'You failed in updating'
+    end
   end
   private
   def proto_params
