@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+
+  before_action :prototype_set, only: [:edit, :update, :update]
   def index
     @prototypes = Prototype.includes(:user).order("created_at DESC")
   end
@@ -15,14 +17,11 @@ class PrototypesController < ApplicationController
     end
   end
   def show
-    @proto   = Prototype.find(params[:id])
     # @comment = Comment.new
   end
   def edit
-    @prototype = Prototype.find(params[:id])
   end
   def update
-    @prototype = Prototype.find(params[:id])
     @prototype.update(proto_params)
     redirect_to root_path, notice: 'You suceeded in updating'
   end
@@ -34,5 +33,9 @@ class PrototypesController < ApplicationController
       :concept,
       images_attributes: [:id, :content,:content_type]
     )
+  end
+
+  def prototype_set
+    @prototype = Prototype.find(params[:id])
   end
 end
