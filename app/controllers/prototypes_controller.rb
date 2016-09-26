@@ -18,6 +18,9 @@ class PrototypesController < ApplicationController
     @proto   = Prototype.find(params[:id])
     # @comment = Comment.new
   end
+  def edit
+    @prototype = Prototype.find(params[:id])
+  end
   private
   def proto_params
     params.require(:prototype).permit(
