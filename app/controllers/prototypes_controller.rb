@@ -21,6 +21,11 @@ class PrototypesController < ApplicationController
   def edit
     @prototype = Prototype.find(params[:id])
   end
+  def update
+    @prototype = Prototype.find(params[:id])
+    @prototype.update(proto_params)
+    redirect_to root_path, notice: 'You suceeded in updating'
+  end
   private
   def proto_params
     params.require(:prototype).permit(

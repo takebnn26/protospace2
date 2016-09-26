@@ -3,5 +3,6 @@ class Prototype < ActiveRecord::Base
   has_many   :images
   has_many   :comments
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes[:content].blank? }
-  validates :images, presence: true
+  validates :images, :title, :concept, :catch_copy, presence: true
+
 end
