@@ -7,8 +7,8 @@
     %a.navbar-brand(href="/")
       = image_tag("logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "36px")
     .navbar-collapse.collapse.navbar-responsive-collapse
-      - if user_signed_in?
-        %ul.nav.navbar-nav.navbar-right
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
           %li.dropdown
             %a.dropdown-toggle{aria: {expanded: "false"}, data: {toggle: "dropdown"}, href: "#", role: "button"}
               #{current_user.name}
@@ -23,8 +23,8 @@
           %li
             .btn.btn-primary.navbar-btn
               = link_to 'New Proto', new_prototype_path
-      - else
-        %ul.nav.navbar-nav.navbar-right
-          %li
-            .btn.btn-primary.navbar-btn
-              = link_to "Get started", new_user_session_path
+        - else
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              .btn.btn-primary.navbar-btn
+                = link_to "Get started", new_user_session_path
