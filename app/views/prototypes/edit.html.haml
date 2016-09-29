@@ -3,19 +3,21 @@
     = form_for @prototype do |f|
       %header.row.user-nav.row
         .col-md-12
-          = f.text_field :title, placeholder: "Title", class:"proto-new-title"
+          = f.text_field :title, placeholder: "Title", class:"proto-new-title", value: "#{@prototype.title}"
       .row
         .col-md-12
           .cover-image-upload
-            = f.fields_for :images do |img|
+            = f.fields_for :images, @prototype.images.main.first do |img|
+              = image_tag(@prototype.images.main.first.content, size: "730x500")
               = img.file_field :content
               = img.hidden_field :content_type, value: :main
         .col-md-12
           %ul.proto-sub-list.list-group
-            - 2.times do
+            - @prototype.images.sub.each do |sub|
               %li.list-group-item.col-md-4
                 .image-upload
-                  = f.fields_for :images do |img|
+                  = f.fields_for :images, sub do |img|
+                    = image_tag(sub.content, size: "213x200")
                     = img.file_field :content
                     = img.hidden_field :content_type, value: :sub
             %li.list-group-item.col-md-4
@@ -23,9 +25,9 @@
                 %span +
       .row.proto-description
         .col-md-12
-          = f.text_field :catch_copy, placeholder: "Catch Copy"
+          = f.text_field :catch_copy, placeholder: "Catch Copy", value: "#{@prototype.catch_copy}"
         .col-md-12
-          = f.text_area :concept, cols: "30", rows: "4", placeholder: "Concept"
+          = f.text_area :concept, cols: "30", rows: "4", placeholder: "Concept", value: "#{@prototype.concept}"
         .col-md-12
           %h4 Tag List
           .row

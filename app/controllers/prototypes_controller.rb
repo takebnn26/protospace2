@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+
+  before_action :prototype_set, only: [:edit, :update, :show, :destroy]
   def index
     @prototypes = Prototype.includes(:user).order("created_at DESC")
   end
@@ -15,8 +17,23 @@ class PrototypesController < ApplicationController
     end
   end
   def show
-    @proto   = Prototype.find(params[:id])
     # @comment = Comment.new
+  end
+  def edit
+  end
+  def update
+    if @prototype.update(proto_params)
+      redirect_to root_path, notice: 'You suceeded in updating'
+    else
+      render :edit, alert: 'You failed in updating'
+    end
+  end
+  def destroy
+    if @prototype.destroy
+      redirect_to root_path, notice: 'You succeeded in deleting'
+    else
+      redirect_to root_path, alert: 'You failed in deleting'
+    end
   end
   private
   def proto_params
@@ -26,5 +43,9 @@ class PrototypesController < ApplicationController
       :concept,
       images_attributes: [:id, :content,:content_type]
     )
+  end
+
+  def prototype_set
+    @prototype = Prototype.find(params[:id])
   end
 end
