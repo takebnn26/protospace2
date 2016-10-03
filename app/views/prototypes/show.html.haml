@@ -17,7 +17,7 @@
       %button.btn.btn-default
         = image_tag("icon_heart.svg")
         Like
-        %span.num 20
+        %span.num= @prototype.likes_count
   .row
     .col-md-9
       = image_tag(@prototype.images.main.first.content, class: 'img-responsive')
