@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
   def edit
-     redirect_to prototypes_index_path unless current_user.id == params[:id].to_i
      @user = User.find(params[:id])
+     redirect_to prototypes_index_path unless current_user.id == @user.id
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
-      redirect_to root_path, success: "You succeeded to edit your profile"
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to root_path, notice: "You succeeded to edit your profile"
     else
-      render edit_user_path, warning: "You failed to edit your profile"
+      redirect_to edit_user_path(@user), alert: @user.errors.full_messages
     end
   end
 
