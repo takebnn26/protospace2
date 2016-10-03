@@ -13,7 +13,7 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to root_path, notice: 'You succeeded in posting'
     else
-      render :new, alert: 'You failed in posting'
+      redirect_to new_prototype_path, alert: @prototype.errors.full_messages
     end
   end
   def show
@@ -25,14 +25,14 @@ class PrototypesController < ApplicationController
     if @prototype.update(proto_params)
       redirect_to root_path, notice: 'You suceeded in updating'
     else
-      render :edit, alert: 'You failed in updating'
+      redirect_to edit_prototype_path(@prototype), alert: @prototype.errors.full_messages
     end
   end
   def destroy
     if @prototype.destroy
       redirect_to root_path, notice: 'You succeeded in deleting'
     else
-      redirect_to root_path, alert: 'You failed in deleting'
+      redirect_to root_path, alert: @prototype.errors.full_messages
     end
   end
   private
