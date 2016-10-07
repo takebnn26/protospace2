@@ -1,13 +1,3 @@
-- flash.each do |alert_type, value|
-  - alert_type = alert_type == 'notice' ? 'info' : 'danger'
-  - if alert_type == 'danger'
-    .alert.alert-danger
-      %ul
-        - value.each do |msg|
-          %li
-            = msg
-  - else
-    .alert.alert-info
-      = value
-
-
+- flash.each do |key, value|
+  key == "notice" ? key = "info" : key = "alert"
+  = content_tag :div, value, class: "alert alert-#{key}"
