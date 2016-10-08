@@ -18,7 +18,7 @@
         .proto-user
           = link_to "by #{proto.user.name}", user_path(proto.user)
         .proto-posted
-          = proto.created_at.strftime("%Y年%m月%d日")
+          = proto.created_at.to_s(:date)
       %ul.proto-tag-list.list-inline
         %li
           %a{href: "#", class: "btn btn-default"} iPad
