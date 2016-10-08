@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20161003055356) do
     t.string   "title",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "likes_count", limit: 4,     default: 0
+    t.integer  "likes_count", limit: 4,     default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
