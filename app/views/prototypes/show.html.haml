@@ -15,7 +15,7 @@
               = @prototype.user.works
     .col-md-6.clearfix
       #like-buttons
-        = render partial: 'layouts/like', locals: { prototype: @prototype, likes: @likes, like: @like }
+        = render partial: 'like', locals: { prototype: @prototype, likes: @likes, like: @like }
   .row
     .col-md-9
       = image_tag(@prototype.images.main.first.content, class: 'img-responsive')

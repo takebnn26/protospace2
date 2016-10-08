@@ -12,7 +12,7 @@
         Like
         = prototype.likes_count
 - else
-  = button_to prototype_likes_path(prototype), id: "like-button", class: "btn-default increment-button", remote: true do
+  = button_to new_user_session_path, class: "btn-default" do
     = image_tag("icon_heart.svg")
     %span
       Like
