@@ -17,7 +17,7 @@ class PrototypesController < ApplicationController
     end
   end
   def show
-    # @comment = Comment.new
+    @like = Like.where(user_id: current_user.id, prototype_id: @prototype.id)
   end
   def edit
   end
