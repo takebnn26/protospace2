@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user
-  before_action :comfirm_user, except: :show
+  before_action -> {comfirm_user(@user)}, only: [:edit, :update]
   def edit
   end
 
@@ -21,8 +21,5 @@ class UsersController < ApplicationController
   end
   def set_user
     @user = User.find(params[:id])
-  end
-  def comfirm_user
-    redirect_to prototypes_index_path unless current_user.id == @user.id
   end
 end

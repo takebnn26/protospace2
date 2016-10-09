@@ -1,6 +1,7 @@
 class PrototypesController < ApplicationController
 
   before_action :prototype_set, only: [:edit, :update, :show, :destroy]
+  before_action -> {comfirm_user(@prototype)}, only: [:edit, :update, :destroy]
   def index
     @prototypes = Prototype.includes(:user).order("created_at DESC")
   end
@@ -13,11 +14,12 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to root_path, notice: 'You succeeded in posting'
     else
-      redirect_to new_prototype_path, alert: @prototype.errors.full_messages
+      flash[:alert] = @prototype.errors.full_messages
+      render action: :new
     end
   end
   def show
-    @like = Like.find_by(prototype_id: @prototype.id)
+    @like = Like.find_by(user_id: current_user.id, prototype_id: @prototype.id)
   end
   def edit
   end
@@ -25,14 +27,16 @@ class PrototypesController < ApplicationController
     if @prototype.update(proto_params)
       redirect_to root_path, notice: 'You suceeded in updating'
     else
-      redirect_to edit_prototype_path(@prototype), alert: @prototype.errors.full_messages
+      flash[:alert] = @prototype.errors.full_messages
+      render action: :edit
     end
   end
   def destroy
     if @prototype.destroy
       redirect_to root_path, notice: 'You succeeded in deleting'
     else
-      redirect_to root_path, alert: @prototype.errors.full_messages
+      flash[:alert] = @prototype.errors.full_messages
+      render action: :index
     end
   end
   private
