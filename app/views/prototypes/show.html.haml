@@ -42,15 +42,15 @@
     %h4.col-md-12
       Comments
       %span.num= @prototype.comments.length
-    %ul.col-md-8
+    %ul.col-md-8#comments_list
       = render partial: 'prototypes/comment', collection: @prototype.comments
     - if user_signed_in?
       = form_for [@prototype, @comment], class: 'form-inline', remote: true do |f|
-        - if @prototype.errors.any?
+        - if @comment.errors.any?
           .explain_errors
-            %h2= "#{@prototype.errors.count} errors"
+            %h2= "#{@comment.errors.count} errors"
             %ul
-            - @prototype.errors.full_messages.each do |error|
+            - @comment.errors.full_messages.each do |error|
               %li #{error}
         %h4.col-md-12 Write a comment
         .row

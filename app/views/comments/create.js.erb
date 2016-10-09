@@ -1,2 +1,2 @@
 $("#comment_text").val("")
-$("ul.col-md-8").html("<%= j(render partial: 'prototypes/comment', collection: @prototype.comments) %>");
+$("#comments_list").html("<%= j(render partial: 'prototypes/comment', collection: @prototype.comments) %>");
