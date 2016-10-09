@@ -1,0 +1,13 @@
+.media
+  .media-left
+    = link_to user_path(comment.user) do
+      - if comment.user.image.present?
+        = image_tag(comment.user.image, alt: "64x64", data: { holder: { rendered: true }}, data: { src: "holder.js/64x64"}, style: "width: 64px; height: 64px")
+      - else
+        = image_tag("default.png", alt: "64x64", data: { holder: { rendered: true }}, data: { src: "holder.js/64x64"}, style: "width: 64px; height: 64px")
+  .media-body
+    %h4#top-aligned-media.media-heading
+      = comment.user.name
+      %a.anchorjs-link{href: "#top-aligned-media"}
+        %span.anchorjs-icon
+    %p= comment.text
