@@ -1,25 +1,26 @@
 .col-sm-4.col-md-3.proto-content
   .thumbnail
-    - if current_user.id == proto.user_id && user_signed_in?
-      .dropdown.drop_menu_location
-        %button.btn.btn-default.dropdown-toggle{ type: "button", data: {toggle: "dropdown"}, area: {expanded: false}}
-          Action
-        %ul.dropdown-menu{ aria: {labelledby: "dropdownMenu1"}}
-          %li
-            = link_to 'Delete', prototype_path(proto), method: :delete
-          %li
-            = link_to 'Edit', edit_prototype_path(proto)
-      = link_to prototype_path(proto) do
-        = image_tag(proto.images.main.first.content)
-      .caption
-        %h3= proto.title
-        .proto-meta
-          .proto-user
-            = link_to "by #{proto.user.name}", user_path(proto.user)
-          .proto-posted
-            = proto.created_at.strftime("%Y年%m月%d日")
-        %ul.proto-tag-list.list-inline
-          %li
-            %a{href: "#", class: "btn btn-default"} iPad
-          %li
-            %a{href: "#", class: "btn btn-default"} wireframe
+    - if user_signed_in?
+      - if current_user.id == proto.user_id
+        .dropdown.drop_menu_location
+          %button.btn.btn-default.dropdown-toggle{ type: "button", data: {toggle: "dropdown"}, area: {expanded: false}}
+            Action
+          %ul.dropdown-menu{ aria: {labelledby: "dropdownMenu1"}}
+            %li
+              = link_to 'Delete', prototype_path(proto), method: :delete
+            %li
+              = link_to 'Edit', edit_prototype_path(proto)
+    = link_to prototype_path(proto) do
+      = image_tag(proto.images.main.first.content)
+    .caption
+      %h3= proto.title
+      .proto-meta
+        .proto-user
+          = link_to "by #{proto.user.name}", user_path(proto.user)
+        .proto-posted
+          = proto.created_at.to_s(:date)
+      %ul.proto-tag-list.list-inline
+        %li
+          %a{href: "#", class: "btn btn-default"} iPad
+        %li
+          %a{href: "#", class: "btn btn-default"} wireframe
