@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   class PermissionDenied < StandardError; end
 
   rescue_from PermissionDenied do
-    redirect_to :root, alert: "You shold login."
+    redirect_to :root, alert: "You don't have permittion."
   end
 
   private

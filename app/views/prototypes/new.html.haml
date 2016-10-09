@@ -1,6 +1,12 @@
 .container.proto-new
   .col-md-8.col-md-offset-2
     = form_for @prototype do |f|
+      - if @prototype.errors.any?
+        .explain_errors
+          %h2= "#{@prototype.errors.count} errors"
+          %ul
+          - @prototype.errors.full_messages.each do |error|
+            %li #{error}
       %header.row.user-nav.row
         .col-md-12
           = f.text_field :title, placeholder: "Title", class:"proto-new-title"

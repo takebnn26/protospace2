@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path, notice: "You succeeded to edit your profile"
     else
-      render edit_user_path(@user), alert: @user.errors.full_messages
+      render edit_user_path(@user), alert: "You can't edit"
     end
   end
 

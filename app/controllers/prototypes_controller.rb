@@ -14,7 +14,7 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to root_path, notice: 'You succeeded in posting'
     else
-      flash[:alert] = @prototype.errors.full_messages
+      flash[:alert] = "You can't post it"
       render action: :new
     end
   end
@@ -27,7 +27,7 @@ class PrototypesController < ApplicationController
     if @prototype.update(proto_params)
       redirect_to root_path, notice: 'You suceeded in updating'
     else
-      flash[:alert] = @prototype.errors.full_messages
+      flash[:alert] = "You can't edit it"
       render action: :edit
     end
   end
@@ -35,7 +35,7 @@ class PrototypesController < ApplicationController
     if @prototype.destroy
       redirect_to root_path, notice: 'You succeeded in deleting'
     else
-      flash[:alert] = @prototype.errors.full_messages
+      flash[:alert] = "You can't delete it"
       render action: :index
     end
   end
