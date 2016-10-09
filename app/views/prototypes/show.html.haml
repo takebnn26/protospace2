@@ -42,15 +42,20 @@
     %h4.col-md-12
       Comments
       %span.num= @prototype.comments.length
-    .col-md-8
-      - @prototype.comments.each do |comment|
-        = render partial: 'comment', locals: { comment: comment }
-      - if user_signed_in?
-        = form_for [@prototype, @comment], class: 'form-inline' do |f|
-          %h4.col-md-12 Write a comment
-          .row
-            .form-group.col-md-7
-              = f.text_area :text, class: 'form-control', rows: '3', placeholder: 'Your comments'
-              = f.hidden_field :user_id, value: current_user.id
-            .form-group.col-md-5
-              = f.submit 'Comment', class:'btn btn-primary'
+    %ul.col-md-8
+      = render partial: 'prototypes/comment', collection: @prototype.comments
+    - if user_signed_in?
+      = form_for [@prototype, @comment], class: 'form-inline', remote: true do |f|
+        - if @prototype.errors.any?
+          .explain_errors
+            %h2= "#{@prototype.errors.count} errors"
+            %ul
+            - @prototype.errors.full_messages.each do |error|
+              %li #{error}
+        %h4.col-md-12 Write a comment
+        .row
+          .form-group.col-md-7
+            = f.text_area :text, class: 'form-control', rows: '3', placeholder: 'Your comments'
+            = f.hidden_field :user_id, value: current_user.id
+          .form-group.col-md-5
+            = f.submit 'Comment', class:'btn btn-primary'
