@@ -13,6 +13,9 @@ gem 'erb2haml'
 # ユーザー管理
 gem 'devise'
 
+# タグ機能
+gem 'acts-as-taggable-on', '~> 4.0'
+
 # 画像アップロード
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
