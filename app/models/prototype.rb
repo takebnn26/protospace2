@@ -7,6 +7,7 @@ class Prototype < ActiveRecord::Base
   has_many   :likes, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes[:content].blank? }
   validates :images, :title, :concept, :catch_copy, presence: true
+  acts_as_taggable_on :tags
   def like_user(user_id)
     likes.find_by(user_id: user_id)
   end
