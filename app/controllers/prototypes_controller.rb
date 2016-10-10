@@ -19,6 +19,8 @@ class PrototypesController < ApplicationController
     end
   end
   def show
+    @comment = Comment.new
+    @like = Like.find_by(prototype_id: @prototype.id)
   end
   def edit
   end

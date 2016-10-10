@@ -42,15 +42,20 @@
     %h4.col-md-12
       Comments
       %span.num= @prototype.comments.length
-    .col-md-8
-      - @prototype.comments.each do |comment|
-        .media
-          .media-left
-            = link_to user_path(comment.user) do
-              %img.media-object{alt: "64x64", data: { holder: { rendered: true }}, data: { src: "holder.js/64x64"}, src: "#{comment.user.image}", style: "width: 64px; height: 64px;"}
-          .media-body
-            %h4#top-aligned-media.media-heading
-              = comment.user.name
-              %a.anchorjs-link{href: "#top-aligned-media"}
-                %span.anchorjs-icon
-            %p= comment.text
+    %ul.col-md-8#comments_list
+      = render partial: 'prototypes/comment', collection: @prototype.comments
+    - if user_signed_in?
+      = form_for [@prototype, @comment], class: 'form-inline', remote: true do |f|
+        - if @comment.errors.any?
+          .explain_errors
+            %h2= "#{@comment.errors.count} errors"
+            %ul
+            - @comment.errors.full_messages.each do |error|
+              %li #{error}
+        %h4.col-md-12 Write a comment
+        .row
+          .form-group.col-md-7
+            = f.text_area :text, class: 'form-control', rows: '3', placeholder: 'Your comments'
+            = f.hidden_field :user_id, value: current_user.id
+          .form-group.col-md-5
+            = f.submit 'Comment', class:'btn btn-primary'
