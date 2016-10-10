@@ -1,7 +1,7 @@
 class Prototypes::PopularController < PrototypesController
 
   def index
-    @prototypes = Prototype.includes(:user).order("likes_count DESC")
+    @prototypes = Prototype.includes(:user).popular
   end
 
 end
