@@ -47,7 +47,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       images_attributes: [:id, :content,:content_type]
-    )
+    ).merge(tag_list: params[:prototype][:tag_list])
   end
 
   def prototype_set
