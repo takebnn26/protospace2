@@ -1,7 +1,6 @@
 .jumbotron
   .container.text-center
     = image_tag("header_logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "73px")
-
 .filter-nav
   .container
     .row
@@ -10,7 +9,7 @@
           = link_to "Popular PROTO", popular_index_path
         %li{class: "#{'active' if current_page?(root_path)}"}
           = link_to "Newest PROTO", root_path
-      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
+      = button_to "View Tags", tags_path, method: :get, class: "btn-default"
 .container.proto-list
   .row
     - @prototypes.each do |proto|
