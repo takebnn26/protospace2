@@ -5,8 +5,9 @@ class TagsController < ApplicationController
   end
 
   def show
-    tag = ActsAsTaggableOn::Tag.find(params[:id])
+    tag = ActsAsTaggableOn::Tag.where(name: params[:id])
     @prototypes = Prototype.tagged_with(tag.name)
+    render template: "prototypes/index"
   end
 
 end
