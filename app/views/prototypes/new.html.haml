@@ -15,16 +15,23 @@
           .cover-image-upload
             = f.fields_for :images do |img|
               = img.file_field :content
+              = image_tag (""),id: "js-preview0", class: "image-preview"
               = img.hidden_field :content_type, value: :main
         .col-md-12
           %ul.proto-sub-list.list-group
-            - 2.times do
+            - 2.times do |i|
               %li.list-group-item.col-md-4
                 .image-upload
                   = f.fields_for :images do |img|
                     = img.file_field :content
+                    = image_tag (""), id: "js-preview#{ i + 1}", class: "image-preview"
                     = img.hidden_field :content_type, value: :sub
             %li.list-group-item.col-md-4
+              .image-upload.hidden
+                = f.fields_for :images do |img|
+                  = img.file_field :content
+                  = image_tag (""), id: "js-preview3", class: "image-preview"
+                  = img.hidden_field :content_type, value: :sub
               .image-upload-plus
                 %span +
       .row.proto-description
