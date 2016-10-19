@@ -15,7 +15,7 @@
           .cover-image-upload
             = f.fields_for :images, @prototype.images.main.first do |img|
               = image_tag (@prototype.images.main.first.content), id: "js-preview0", class: "image-preview"
-              = img.file_field :content
+              = img.file_field :content, id: "js-file-input0"
               = img.hidden_field :content_type, value: :main
         .col-md-12
           %ul.proto-sub-list.list-group
@@ -24,13 +24,13 @@
                 .image-upload
                   = f.fields_for :images, sub do |img|
                     = image_tag (sub.content), id: "js-preview#{i}", class: "image-preview"
-                    = img.file_field :content
+                    = img.file_field :content, id: "js-file-input#{i}"
                     = img.hidden_field :content_type, value: :sub
             %li.list-group-item.col-md-4
               .image-upload.hidden
                 = f.fields_for :images do |img|
                   = image_tag (""), id: "js-preview3", class: "image-preview"
-                  = img.file_field :content
+                  = img.file_field :content, id: "js-file-input3"
                   = img.hidden_field :content_type, value: :sub
               .image-upload-plus
                 %span +
