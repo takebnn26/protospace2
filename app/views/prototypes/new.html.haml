@@ -15,7 +15,7 @@
           .cover-image-upload
             = f.fields_for :images do |img|
               = img.file_field :content, class: "js-preview", data: { preview: "#js-image0" }
-              = image_tag (""), id: "js-image0"
+              = image_tag (""), id: "js-image0", class: "js-pre-images"
               = img.hidden_field :content_type, value: :main
         .col-md-12
           %ul.proto-sub-list.list-group
@@ -24,13 +24,13 @@
                 .image-upload
                   = f.fields_for :images do |img|
                     = img.file_field :content, class: "js-preview", data: { preview: "#js-image#{i + 1}" }
-                    = image_tag (""), id: "js-image#{i + 1}"
+                    = image_tag (""), id: "js-image#{i + 1}", class: "js-pre-images"
                     = img.hidden_field :content_type, value: :sub
             %li.list-group-item.col-md-4
               .image-upload.hidden
                 = f.fields_for :images do |img|
                   = img.file_field :content, class: "js-preview", data: { preview: "#js-image3" }
-                  = image_tag (""), id: "js-image3"
+                  = image_tag (""), id: "js-image3", class: "js-pre-images"
                   = img.hidden_field :content_type, value: :sub
               .image-upload-plus
                 %span +
