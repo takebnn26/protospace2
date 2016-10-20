@@ -3,11 +3,12 @@ $(function(){
 });
 
 function show_preview(num) {
-  $("#js-file-input" + num).on("change", function() {
+  $(".js-preview").on("change", function() {
     var file = this.files;
     if (!file[0].type.match(/^image\/(png|jpeg|gif)$/)) return;
     var reader = new FileReader();
-    reader.onload = function (e) {$("#js-preview" + num).attr('src', e.target.result).show();}
+    var target_id = $(this).data("preview");
+    reader.onload = function (e) {$(target_id).attr('src', e.target.result).show();}
     reader.readAsDataURL(file[0]);
   });
 };
