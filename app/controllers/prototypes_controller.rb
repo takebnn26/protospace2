@@ -3,7 +3,7 @@ class PrototypesController < ApplicationController
   before_action :prototype_set, only: [:edit, :update, :show, :destroy]
   before_action -> {comfirm_user(@prototype)}, only: [:edit, :update, :destroy]
   def index
-    @prototypes = Prototype.includes(:user).order("created_at DESC")
+    @prototypes = Prototype.includes(:user).order("created_at DESC").page(params[:page])
   end
   def new
     @prototype = Prototype.new
