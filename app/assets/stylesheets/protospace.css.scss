@@ -655,3 +655,30 @@ li.media{
   display: none;
 }
 
+//インデックス画面のビュー
+
+.container.proto-list {
+  overflow: auto;
+  min-height: 500px;
+
+  .row{
+    overflow: auto;
+    min-height: 500px;
+    .proto-content{
+      overflow: auto;
+      min-height: 500px;
+    }
+  }
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.wrapper {
+  min-height: 960px;
+}
+
+
